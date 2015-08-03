@@ -13,9 +13,13 @@
 </select><p>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">
+
 <script type="text/javascript">
 	mi_select = document.getElementById("tema");
+	var vtema = "<%= quiz.tema %>"
+	vtema = vtema.replace(/^\s*|\s*$/g, '');
+
 	console.log(mi_select.value);
-	console.log("<%= quiz.tema %>");
-	mi_select.value = "<%= quiz.tema %>";
+	console.log(vtema);
+	mi_select.value = vtema;
 </script>
