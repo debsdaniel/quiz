@@ -37,6 +37,17 @@ app.use(function(req, res, next) {
     req.session.redir = req.path;
   }
 
+  //console.log("SESSION");
+  //console.dir(req.session);
+  // autologout
+  var now = Date.now();
+  var sessionMaxTime = 120000; // 2 min
+  if(req.session.lastConn && now - req.session.lastConn > sessionMaxTime){
+    delete req.session.user;
+  }
+  req.session.lastConn = now;
+  // ! autologout
+
   // Hacer visible req.session en las vistas
   res.locals.session = req.session;
   next();
